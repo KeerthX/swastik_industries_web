@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Swastik Industries is a leading manufacturer of zipper sliders, belt buckles, and metal accessories. Trusted by top global brands like Samsonite, VIP, American Tourister, and more. ISO-certified, with a daily production capacity of 400,000+ items.">
+    <meta name="keywords"
+        content="zipper sliders, belt buckles, metal accessories, manufacturing, Swastik Industries, ISO certified manufacturer, eco-friendly manufacturing, trusted brand, quality manufacturing">
+    <meta name="author" content="Swastik Industries">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Swastik Industries - Zipper Sliders & Metal Accessories Manufacturer">
+    <meta property="og:description"
+        content="Leading manufacturer of premium zipper sliders, belt buckles, and metal accessories, trusted by global brands since 2017.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.swastikindustries.com">
+    <meta property="og:image" content="swastik_logo.png">
+
+    <title>Swastik Industries | Premium Zipper Sliders, Belt Buckles & Metal Accessories Manufacturer</title>
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="swastik_logo.png" as="image">
+    <link rel="preload" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" as="style">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="zipper.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Swastik Industries",
+      "description": "Premium manufacturer of zipper sliders, belt buckles, and metal accessories",
+      "foundingDate": "2017",
+      "url": "https://www.swastikindustries.com",
+      "logo": "swastik_logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "",
+        "contactType": "customer service"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Valsad",
+        "addressRegion": "Gujarat",
+        "addressCountry": "IN"
+      }
+    }
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Navbar -->
+        <navbar></navbar>
+
+        <!-- Showcase Section -->
+        <section id="showcase" class="showcase py-5" style="background-color: white;">
+            <div class="container">
+                <h2 class="section-title text-center mb-4 mt-5">Buckles</h2>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-4 " v-for="product in showcase.products" :key="product.name">
+                        <img :src="product.image" class="img-fluid prod-image" :alt="product.name" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer-section></footer-section>
+    </div>
+
+    <!-- Vue 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <!-- Bootstrap 5 Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Navbar Component -->
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                showcase: {
+                    products: Array.from({ length: 16 }, (_, index) => ({
+                        image: `images/products/Buckles/${index + 2}.jpg`
+                    }))
+                }
+            }
+        });
+    </script>
+    <!-- Connects to script.js for animations and interactivity -->
+    <script src="loader.js"></script>
+
+</body>
+
+</html>
