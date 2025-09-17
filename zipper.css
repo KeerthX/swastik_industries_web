@@ -1,0 +1,200 @@
+/* Loader Styling */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f8f9fa;
+    z-index: 2000;
+}
+
+/* Cloth Panels with Texture */
+.cloth-panel {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background-image: url('texture.jpg');
+    /* Texture Background */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cloth-panel.left {
+    left: 0;
+    transform-origin: left center;
+}
+
+.cloth-panel.right {
+    right: 0;
+    transform-origin: right center;
+}
+
+/* Cloth Texture Overlay */
+.cloth-texture {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    background-image:
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0, rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent 50%),
+        repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.1) 0, rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent 50%);
+    background-size: 10px 10px;
+}
+
+/* Cloth Fold Effect */
+.cloth-fold {
+    position: absolute;
+    top: 0;
+    width: 40px;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.05) 30%, rgba(0, 0, 0, 0.025) 60%, rgba(0, 0, 0, 0) 100%);
+    filter: blur(2px);
+}
+
+.cloth-panel.left .cloth-fold {
+    right: 0;
+}
+
+.cloth-panel.right .cloth-fold {
+    left: 0;
+    transform: scaleX(-1);
+}
+
+/* Zipper Assembly */
+.zipper-assembly {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 100%;
+    z-index: 2;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.zipper-track {
+    position: relative;
+    width: 6px;
+    height: 100%;
+    margin: 0 auto;
+    background: linear-gradient(90deg, #2a2a2a, #404040, #2a2a2a);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Zipper Teeth */
+.teeth-container {
+    position: absolute;
+    width: 12px;
+    height: 100%;
+    top: 0;
+}
+
+.teeth-container.left {
+    left: -3px;
+}
+
+.teeth-container.right {
+    right: -3px;
+}
+
+.tooth {
+    position: absolute;
+    width: 10px;
+    height: 6px;
+    background: linear-gradient(180deg, #d4d4d4, #ffffff 30%, #d4d4d4);
+    border: 1px solid #666;
+    box-sizing: border-box;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center center;
+    clip-path: polygon(0% 0%, 100% 0%, 85% 50%, 100% 100%, 0% 100%, 15% 50%);
+}
+
+.teeth-container.right .tooth {
+    transform: scaleX(-1);
+}
+
+/* Zipper Pull */
+.zipper-pull {
+    position: absolute;
+    width: 30px;
+    height: 45px;
+    left: 0;
+    top: 0;
+    z-index: 3;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    transition: all 2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Logo Container */
+.logo-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 1;
+    opacity: 0;
+    transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.logo {
+    max-width: 240px;
+    height: auto;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+}
+
+/* Animation States */
+.unzipping .cloth-panel.left {
+    transform: translateX(-100%) rotateY(30deg) skewY(5deg);
+}
+
+.unzipping .cloth-panel.right {
+    transform: translateX(100%) rotateY(-30deg) skewY(-5deg);
+}
+
+.unzipping .zipper-pull {
+    top: calc(100% - 45px);
+    transform: rotate(-10deg);
+}
+
+.unzipping .tooth {
+    opacity: 0;
+    transform: scale(0.6) translateY(10px);
+}
+
+.hiding-zipper .zipper-assembly {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px) scale(0.8);
+}
+
+.logo-reveal .logo-container {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+/* Shimmer Effect */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.cloth-panel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: skewX(-20deg);
+    animation: shimmer 3s infinite;
+}
